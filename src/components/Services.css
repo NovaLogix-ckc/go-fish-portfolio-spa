@@ -1,0 +1,122 @@
+.services {
+  position: relative;
+  background: var(--gray-50);
+  overflow: hidden;
+}
+
+.services__bg-dots {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, var(--gray-200) 1px, transparent 1px);
+  background-size: 32px 32px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.services__header {
+  text-align: center;
+  margin-bottom: var(--space-16);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.services__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+}
+
+.services__card {
+  position: relative;
+  padding: var(--space-8);
+  border-radius: var(--radius-2xl);
+  background: var(--white);
+  border: 1px solid var(--gray-100);
+  transition: all var(--duration-base) var(--ease-out);
+  overflow: hidden;
+}
+
+.services__card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.services__card:hover .services__card-shine {
+  opacity: 1;
+}
+
+.services__card-shine {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: 0;
+  transition: opacity var(--duration-slow);
+  pointer-events: none;
+}
+
+.services__card--accent .services__card-shine {
+  background: hsla(var(--accent-hue), 60%, 50%, 0.12);
+}
+
+.services__card--primary .services__card-shine {
+  background: hsla(var(--hue), 60%, 50%, 0.12);
+}
+
+.services__card--warm .services__card-shine {
+  background: hsla(var(--warm-hue), 60%, 50%, 0.12);
+}
+
+.services__card-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-5);
+}
+
+.services__card-icon--accent {
+  background: hsla(var(--accent-hue), 50%, 45%, 0.12);
+  color: var(--accent-500);
+}
+
+.services__card-icon--primary {
+  background: hsla(var(--hue), 50%, 35%, 0.12);
+  color: var(--color-500);
+}
+
+.services__card-icon--warm {
+  background: hsla(var(--warm-hue), 50%, 50%, 0.12);
+  color: var(--warm-500);
+}
+
+.services__card-title {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--color-800);
+  margin-bottom: var(--space-3);
+}
+
+.services__card-desc {
+  font-size: var(--text-sm);
+  color: var(--gray-400);
+  line-height: 1.7;
+}
+
+@media (max-width: 900px) {
+  .services__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .services__grid {
+    grid-template-columns: 1fr;
+  }
+}
