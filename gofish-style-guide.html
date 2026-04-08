@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Go F!sh — UI Style Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0D1B2A;
+    --navy-mid: #162436;
+    --navy-light: #1E3248;
+    --green: #1A7A5E;
+    --green-mid: #22A078;
+    --green-light: #2DC48F;
+    --green-pale: #E6F7F2;
+    --grey-dark: #4A5568;
+    --grey-mid: #718096;
+    --grey-light: #E2E8F0;
+    --grey-pale: #F7FAFC;
+    --white: #FFFFFF;
+    --warning: #D97706;
+    --warning-pale: #FFFBEB;
+    --error: #DC2626;
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.10);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,0.14);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #F0F4F8;
+    color: var(--navy);
+    line-height: 1.6;
+  }
+
+  /* ── LAYOUT ── */
+  .guide-header {
+    background: var(--navy);
+    padding: 48px 0 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .guide-header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(34,160,120,0.18) 0%, transparent 70%);
+  }
+  .guide-header::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: 10%;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(45,196,143,0.10) 0%, transparent 70%);
+  }
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  .brand-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 100px;
+    padding: 6px 14px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--green-light);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .brand-badge span { width: 6px; height: 6px; background: var(--green-light); border-radius: 50%; display: inline-block; }
+
+  .guide-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 42px;
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 12px;
+  }
+  .guide-title em { color: var(--green-light); font-style: normal; }
+  .guide-subtitle {
+    font-size: 16px;
+    color: rgba(255,255,255,0.55);
+    max-width: 540px;
+    line-height: 1.65;
+  }
+
+  .toc {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 32px;
+  }
+  .toc a {
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.65);
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 100px;
+    padding: 5px 14px;
+    transition: all 0.2s;
+    letter-spacing: 0.03em;
+  }
+  .toc a:hover { background: rgba(45,196,143,0.15); color: var(--green-light); border-color: rgba(45,196,143,0.25); }
+
+  /* ── SECTIONS ── */
+  .section {
+    padding: 56px 0 40px;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 32px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--grey-light);
+  }
+  .section-num {
+    width: 36px; height: 36px;
+    background: var(--navy);
+    color: var(--white);
+    border-radius: var(--radius-sm);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--navy);
+  }
+  .section-desc {
+    font-size: 14px;
+    color: var(--grey-mid);
+    margin-top: 4px;
+  }
+
+  /* ── CARD ── */
+  .card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 28px 32px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--grey-light);
+  }
+  .card-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: var(--grey-mid);
+    margin-bottom: 16px;
+  }
+
+  /* ── COLORS ── */
+  .color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 16px;
+  }
+  .color-swatch {
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--grey-light);
+    box-shadow: var(--shadow-sm);
+  }
+  .swatch-block {
+    height: 80px;
+  }
+  .swatch-info {
+    padding: 10px 12px;
+    background: var(--white);
+  }
+  .swatch-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--navy);
+    display: block;
+  }
+  .swatch-hex {
+    font-size: 11px;
+    color: var(--grey-mid);
+    font-family: 'Courier New', monospace;
+    display: block;
+    margin-top: 2px;
+  }
+  .swatch-role {
+    font-size: 10px;
+    color: var(--grey-mid);
+    margin-top: 4px;
+    display: block;
+    font-style: italic;
+  }
+
+  /* ── TYPOGRAPHY ── */
+  .type-row {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--grey-pale);
+  }
+  .type-row:last-child { border-bottom: none; }
+  .type-meta {
+    display: flex;
+    gap: 24px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+  }
+  .type-tag {
+    font-size: 11px;
+    color: var(--grey-mid);
+    background: var(--grey-pale);
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+  }
+
+  /* ── BUTTONS ── */
+  .btn-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+    letter-spacing: 0.01em;
+  }
+  .btn-primary {
+    background: var(--navy);
+    color: var(--white);
+  }
+  .btn-primary:hover { background: var(--navy-mid); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+  .btn-secondary {
+    background: var(--green);
+    color: var(--white);
+  }
+  .btn-secondary:hover { background: var(--green-mid); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+  .btn-outline {
+    background: transparent;
+    color: var(--navy);
+    border: 2px solid var(--navy);
+  }
+  .btn-outline:hover { background: var(--navy); color: var(--white); }
+  .btn-ghost {
+    background: var(--grey-pale);
+    color: var(--grey-dark);
+    border: 1px solid var(--grey-light);
+  }
+  .btn-ghost:hover { background: var(--grey-light); }
+  .btn-sm { padding: 8px 16px; font-size: 12px; }
+  .btn-lg { padding: 16px 32px; font-size: 16px; border-radius: 10px; }
+
+  /* ── GRID 2-col ── */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+  @media (max-width: 768px) {
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    .guide-title { font-size: 28px; }
+  }
+
+  /* ── COMPONENTS ── */
+  .comp-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: var(--grey-mid);
+    margin-bottom: 10px;
+  }
+
+  /* Badge */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  .badge-green { background: var(--green-pale); color: var(--green); }
+  .badge-navy { background: rgba(13,27,42,0.08); color: var(--navy); }
+  .badge-new { background: linear-gradient(135deg, var(--green-light), var(--green)); color: white; }
+  .badge-dot::before { content: ''; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+
+  /* Input */
+  .input-group { display: flex; flex-direction: column; gap: 6px; }
+  .input-label { font-size: 13px; font-weight: 600; color: var(--navy); }
+  .input-label span { color: var(--error); margin-left: 2px; }
+  .input {
+    padding: 11px 14px;
+    border: 1.5px solid var(--grey-light);
+    border-radius: var(--radius-sm);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--navy);
+    transition: border-color 0.15s;
+    outline: none;
+  }
+  .input:focus { border-color: var(--navy); box-shadow: 0 0 0 3px rgba(13,27,42,0.08); }
+  .input-hint { font-size: 12px; color: var(--grey-mid); }
+
+  /* Card / Feature tile */
+  .feature-card {
+    background: var(--white);
+    border: 1px solid var(--grey-light);
+    border-radius: var(--radius-md);
+    padding: 22px;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .feature-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+  .feature-icon {
+    width: 44px; height: 44px;
+    background: var(--green-pale);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    margin-bottom: 14px;
+  }
+  .feature-title { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+  .feature-body { font-size: 13px; color: var(--grey-mid); line-height: 1.6; }
+
+  /* Stat / Metric */
+  .stat-card {
+    background: var(--navy);
+    color: var(--white);
+    border-radius: var(--radius-md);
+    padding: 22px;
+    position: relative;
+    overflow: hidden;
+  }
+  .stat-card::after {
+    content: '';
+    position: absolute;
+    top: -20px; right: -20px;
+    width: 90px; height: 90px;
+    border-radius: 50%;
+    background: rgba(45,196,143,0.12);
+  }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 34px;
+    font-weight: 800;
+    color: var(--green-light);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-label { font-size: 13px; color: rgba(255,255,255,0.6); }
+
+  /* Step indicator */
+  .step-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--grey-pale);
+  }
+  .step-num {
+    width: 32px; height: 32px;
+    background: var(--navy);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .step-content h4 { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 3px; }
+  .step-content p { font-size: 13px; color: var(--grey-mid); }
+
+  /* Testimonial */
+  .testimonial {
+    background: var(--grey-pale);
+    border-radius: var(--radius-md);
+    padding: 22px;
+    border-left: 3px solid var(--green);
+    position: relative;
+  }
+  .testimonial-quote { font-size: 13px; color: var(--grey-dark); line-height: 1.7; font-style: italic; margin-bottom: 14px; }
+  .testimonial-author { display: flex; align-items: center; gap: 10px; }
+  .testimonial-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--green-pale); display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--green); font-size: 13px; }
+  .testimonial-name { font-size: 13px; font-weight: 700; color: var(--navy); }
+  .testimonial-role { font-size: 11px; color: var(--grey-mid); }
+
+  /* Nav */
+  .nav-demo {
+    background: var(--white);
+    border-radius: var(--radius-md);
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid var(--grey-light);
+    box-shadow: var(--shadow-sm);
+  }
+  .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 18px; color: var(--navy); }
+  .nav-logo em { color: var(--green); font-style: normal; }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-link { font-size: 13px; font-weight: 500; color: var(--grey-dark); text-decoration: none; transition: color 0.15s; }
+  .nav-link:hover { color: var(--navy); }
+  .nav-ctas { display: flex; gap: 10px; }
+
+  /* ── IMPROVEMENTS ── */
+  .improvements-list { display: flex; flex-direction: column; gap: 16px; }
+  .improvement {
+    background: var(--white);
+    border-radius: var(--radius-md);
+    padding: 20px 24px;
+    border: 1px solid var(--grey-light);
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .improvement.critical { border-left: 4px solid var(--error); }
+  .improvement.warning { border-left: 4px solid var(--warning); }
+  .improvement.enhance { border-left: 4px solid var(--green); }
+  .imp-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+  .imp-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-bottom: 6px;
+  }
+  .imp-tag.critical { background: #FEE2E2; color: var(--error); }
+  .imp-tag.warning { background: var(--warning-pale); color: var(--warning); }
+  .imp-tag.enhance { background: var(--green-pale); color: var(--green); }
+  .imp-title { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 5px; }
+  .imp-desc { font-size: 13px; color: var(--grey-mid); line-height: 1.65; }
+  .imp-fix {
+    margin-top: 10px;
+    padding: 10px 14px;
+    background: var(--grey-pale);
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    color: var(--grey-dark);
+    font-family: 'Courier New', monospace;
+    border: 1px solid var(--grey-light);
+  }
+  .imp-fix strong { font-family: 'DM Sans', sans-serif; display: block; font-size: 11px; font-weight: 700; color: var(--navy); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.06em; }
+
+  /* ── SPACING SCALE ── */
+  .spacing-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--grey-pale);
+  }
+  .spacing-visual {
+    background: var(--green-pale);
+    border: 1px solid var(--green-light);
+    border-radius: 3px;
+    height: 18px;
+    flex-shrink: 0;
+  }
+  .spacing-token { font-family: 'Courier New', monospace; font-size: 12px; color: var(--green); width: 80px; flex-shrink: 0; }
+  .spacing-px { font-size: 12px; color: var(--grey-mid); width: 50px; }
+  .spacing-use { font-size: 12px; color: var(--grey-dark); }
+
+  /* ── ICON NOTE ── */
+  .icon-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .icon-chip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    background: var(--grey-pale);
+    border-radius: 8px;
+    font-size: 13px;
+    color: var(--grey-dark);
+    border: 1px solid var(--grey-light);
+  }
+
+  /* ── MOTION TABLE ── */
+  table { width: 100%; border-collapse: collapse; }
+  th { text-align: left; padding: 10px 14px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--grey-mid); border-bottom: 2px solid var(--grey-light); }
+  td { padding: 12px 14px; font-size: 13px; color: var(--grey-dark); border-bottom: 1px solid var(--grey-pale); }
+  td:first-child { font-family: 'Courier New', monospace; color: var(--green); font-size: 12px; }
+  tr:last-child td { border-bottom: none; }
+
+  /* ── FOOTER ── */
+  .guide-footer {
+    background: var(--navy);
+    color: rgba(255,255,255,0.4);
+    font-size: 12px;
+    text-align: center;
+    padding: 24px 0;
+    margin-top: 40px;
+  }
+  .guide-footer strong { color: rgba(255,255,255,0.7); }
+
+  /* ── AI PROMPT BOX ── */
+  .prompt-box {
+    background: var(--navy);
+    border-radius: var(--radius-md);
+    padding: 22px 24px;
+    color: rgba(255,255,255,0.85);
+    font-family: 'Courier New', monospace;
+    font-size: 12.5px;
+    line-height: 1.75;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(45,196,143,0.2);
+  }
+  .prompt-box::before {
+    content: 'AI CONTEXT PROMPT';
+    position: absolute;
+    top: 12px; right: 16px;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--green-light);
+    font-family: 'DM Sans', sans-serif;
+  }
+  .prompt-box .kw { color: var(--green-light); }
+  .prompt-box .val { color: #7DD3FC; }
+  .prompt-box .cm { color: rgba(255,255,255,0.3); }
+
+  hr.divider {
+    border: none;
+    border-top: 1px solid var(--grey-light);
+    margin: 24px 0;
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="guide-header">
+  <div class="container">
+    <div class="brand-badge"><span></span>UI Style Guide v1.0</div>
+    <h1 class="guide-title">Go F<em>!</em>sh<br>Design System</h1>
+    <p class="guide-subtitle">A complete reference for AI-assisted development, design decisions, and UI consistency across the Go F!sh platform and marketing site.</p>
+    <nav class="toc">
+      <a href="#colors">Colors</a>
+      <a href="#typography">Typography</a>
+      <a href="#spacing">Spacing</a>
+      <a href="#buttons">Buttons</a>
+      <a href="#components">Components</a>
+      <a href="#navigation">Navigation</a>
+      <a href="#motion">Motion</a>
+      <a href="#icons">Icons</a>
+      <a href="#ai-prompt">AI Prompt</a>
+      <a href="#improvements">Improvements</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- 1. COLORS -->
+  <div class="section" id="colors">
+    <div class="section-header">
+      <div class="section-num">01</div>
+      <div>
+        <div class="section-title">Color Palette</div>
+        <div class="section-desc">Three-tier system: Navy (authority), Green (action/growth), Neutral (structure)</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:20px;">
+      <div class="card-label">Primary — Brand Authority</div>
+      <div class="color-grid">
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#0D1B2A;"></div>
+          <div class="swatch-info"><span class="swatch-name">Navy Deep</span><span class="swatch-hex">#0D1B2A</span><span class="swatch-role">Page backgrounds, hero sections</span></div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#162436;"></div>
+          <div class="swatch-info"><span class="swatch-name">Navy Mid</span><span class="swatch-hex">#162436</span><span class="swatch-role">Card backgrounds on dark</span></div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#1E3248;"></div>
+          <div class="swatch-info"><span class="swatch-name">Navy Light</span><span class="swatch-hex">#1E3248</span><span class="swatch-role">Hover states on dark surfaces</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:20px;">
+      <div class="card-label">Accent — Action & Growth</div>
+      <div class="color-grid">
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#1A7A5E;"></div>
+          <div class="swatch-info"><span class="swatch-name">Green Dark</span><span class="swatch-hex">#1A7A5E</span><span class="swatch-role">Filled buttons, text links</span></div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#22A078;"></div>
+          <div class="swatch-info"><span class="swatch-name">Green Mid</span><span class="swatch-hex">#22A078</span><span class="swatch-role">Hover on green elements</span></div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#2DC48F;"></div>
+          <div class="swatch-info"><span class="swatch-name">Green Light</span><span class="swatch-hex">#2DC48F</span><span class="swatch-role">Highlights, checkmarks, accents</span></div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#E6F7F2;"></div>
+          <div class="swatch-info"><span class="swatch-name">Green Pale</span><span class="swatch-hex">#E6F7F2</span><span class="swatch-role">Icon backgrounds, badges</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Neutrals & Feedback</div>
+      <div class="color-grid">
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#4A5568;"></div>
+          <div class="swatch-info"><span class="swatch-name">Grey Dark</span><span class="swatch-hex">#4A5568</span><span class="swatch-role">Body text on light</span></div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#718096;"></div>
+          <div class="swatch-info"><span class="swatch-name">Grey Mid</span><span class="swatch-hex">#718096</span><span class="swatch-role">Supporting / secondary text</span></div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#E2E8F0;"></div>
+          <div class="swatch-info"><span class="swatch-name">Grey Light</span><span class="swatch-hex">#E2E8F0</span><span class="swatch-role">Borders, dividers</span></div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#F7FAFC;"></div>
+          <div class="swatch-info"><span class="swatch-name">Grey Pale</span><span class="swatch-hex">#F7FAFC</span><span class="swatch-role">Page bg, section alternates</span></div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#DC2626;"></div>
+          <div class="swatch-info"><span class="swatch-name">Error Red</span><span class="swatch-hex">#DC2626</span><span class="swatch-role">Error states, alerts</span></div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#D97706;"></div>
+          <div class="swatch-info"><span class="swatch-name">Warning Amber</span><span class="swatch-hex">#D97706</span><span class="swatch-role">Warnings, beta notices</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. TYPOGRAPHY -->
+  <div class="section" id="typography">
+    <div class="section-header">
+      <div class="section-num">02</div>
+      <div>
+        <div class="section-title">Typography</div>
+        <div class="section-desc">Two-font system — Syne for display authority, DM Sans for readable UI copy</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="type-row">
+        <div style="font-family:'Syne',sans-serif;font-size:44px;font-weight:800;color:var(--navy);line-height:1.1;">Hire Smarter</div>
+        <div class="type-meta">
+          <span class="type-tag">font: Syne 800</span>
+          <span class="type-tag">size: 44–52px</span>
+          <span class="type-tag">line-height: 1.1</span>
+          <span class="type-tag">use: H1 hero headings</span>
+        </div>
+      </div>
+      <div class="type-row">
+        <div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:700;color:var(--navy);">The Talent Solution for Australia's Energy Future</div>
+        <div class="type-meta">
+          <span class="type-tag">font: Syne 700</span>
+          <span class="type-tag">size: 28–34px</span>
+          <span class="type-tag">line-height: 1.25</span>
+          <span class="type-tag">use: H2 section headings</span>
+        </div>
+      </div>
+      <div class="type-row">
+        <div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:600;color:var(--navy);">Smart Candidate Matching</div>
+        <div class="type-meta">
+          <span class="type-tag">font: Syne 600</span>
+          <span class="type-tag">size: 18–22px</span>
+          <span class="type-tag">line-height: 1.3</span>
+          <span class="type-tag">use: H3 card / feature titles</span>
+        </div>
+      </div>
+      <div class="type-row">
+        <div style="font-family:'DM Sans',sans-serif;font-size:16px;font-weight:400;color:var(--grey-dark);max-width:600px;">Go F!sh is blending technology and industry experts to evolve how businesses find talent. Our platform brings employers and candidates closer together.</div>
+        <div class="type-meta">
+          <span class="type-tag">font: DM Sans 400</span>
+          <span class="type-tag">size: 16px</span>
+          <span class="type-tag">line-height: 1.7</span>
+          <span class="type-tag">use: Body / paragraph text</span>
+        </div>
+      </div>
+      <div class="type-row">
+        <div style="font-family:'DM Sans',sans-serif;font-size:13px;font-weight:400;color:var(--grey-mid);">Match individuals to your active jobs and engage a recruitment strategy that works for you.</div>
+        <div class="type-meta">
+          <span class="type-tag">font: DM Sans 400</span>
+          <span class="type-tag">size: 13–14px</span>
+          <span class="type-tag">line-height: 1.65</span>
+          <span class="type-tag">use: Supporting / card body text</span>
+        </div>
+      </div>
+      <div class="type-row">
+        <div style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.10em;text-transform:uppercase;color:var(--grey-mid);">Working with industry leading partners</div>
+        <div class="type-meta">
+          <span class="type-tag">font: DM Sans 700</span>
+          <span class="type-tag">size: 10–11px</span>
+          <span class="type-tag">letter-spacing: 0.10em</span>
+          <span class="type-tag">use: Eyebrow / overline labels</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. SPACING -->
+  <div class="section" id="spacing">
+    <div class="section-header">
+      <div class="section-num">03</div>
+      <div>
+        <div class="section-title">Spacing Scale</div>
+        <div class="section-desc">4px base unit — use multiples consistently</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="spacing-row"><div class="spacing-visual" style="width:4px;"></div><span class="spacing-token">space-1</span><span class="spacing-px">4px</span><span class="spacing-use">Icon gaps, tight inline elements</span></div>
+      <div class="spacing-row"><div class="spacing-visual" style="width:8px;"></div><span class="spacing-token">space-2</span><span class="spacing-px">8px</span><span class="spacing-use">Badge padding, tag spacing</span></div>
+      <div class="spacing-row"><div class="spacing-visual" style="width:12px;"></div><span class="spacing-token">space-3</span><span class="spacing-px">12px</span><span class="spacing-use">List items, input hint spacing</span></div>
+      <div class="spacing-row"><div class="spacing-visual" style="width:16px;"></div><span class="spacing-token">space-4</span><span class="spacing-px">16px</span><span class="spacing-use">Card inner padding, grid gaps</span></div>
+      <div class="spacing-row"><div class="spacing-visual" style="width:24px;"></div><span class="spacing-token">space-6</span><span class="spacing-px">24px</span><span class="spacing-use">Section sub-spacing, nav item gaps</span></div>
+      <div class="spacing-row"><div class="spacing-visual" style="width:32px;"></div><span class="spacing-token">space-8</span><span class="spacing-px">32px</span><span class="spacing-use">Card padding, column gutters</span></div>
+      <div class="spacing-row"><div class="spacing-visual" style="width:48px;"></div><span class="spacing-token">space-12</span><span class="spacing-px">48px</span><span class="spacing-use">Section vertical rhythm</span></div>
+      <div class="spacing-row"><div class="spacing-visual" style="width:64px;"></div><span class="spacing-token">space-16</span><span class="spacing-px">64px</span><span class="spacing-use">Hero section padding</span></div>
+      <div class="spacing-row"><div class="spacing-visual" style="width:96px;"></div><span class="spacing-token">space-24</span><span class="spacing-px">96px</span><span class="spacing-use">Major page section separation</span></div>
+    </div>
+
+    <div class="card" style="margin-top:20px;">
+      <div class="card-label">Border Radius Scale</div>
+      <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:flex-end;margin-top:8px;">
+        <div style="text-align:center;"><div style="width:40px;height:40px;background:var(--navy);border-radius:6px;margin:0 auto 8px;"></div><div style="font-size:11px;color:var(--grey-mid);">6px<br><span style="color:var(--green);font-family:monospace;">radius-sm</span></div></div>
+        <div style="text-align:center;"><div style="width:48px;height:48px;background:var(--navy);border-radius:12px;margin:0 auto 8px;"></div><div style="font-size:11px;color:var(--grey-mid);">12px<br><span style="color:var(--green);font-family:monospace;">radius-md</span></div></div>
+        <div style="text-align:center;"><div style="width:60px;height:60px;background:var(--navy);border-radius:20px;margin:0 auto 8px;"></div><div style="font-size:11px;color:var(--grey-mid);">20px<br><span style="color:var(--green);font-family:monospace;">radius-lg</span></div></div>
+        <div style="text-align:center;"><div style="width:56px;height:32px;background:var(--navy);border-radius:100px;margin:0 auto 8px;"></div><div style="font-size:11px;color:var(--grey-mid);">100px<br><span style="color:var(--green);font-family:monospace;">pill</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. BUTTONS -->
+  <div class="section" id="buttons">
+    <div class="section-header">
+      <div class="section-num">04</div>
+      <div>
+        <div class="section-title">Buttons & CTAs</div>
+        <div class="section-desc">Primary = Navy (authority), Secondary = Green (action). Never use green and navy as co-equal primary CTAs on the same surface</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-label">Variants</div>
+      <div class="btn-row">
+        <a class="btn btn-primary">Request Demo</a>
+        <a class="btn btn-secondary">Get Started</a>
+        <a class="btn btn-outline">Learn More</a>
+        <a class="btn btn-ghost">Contact Us</a>
+      </div>
+      <div class="card-label" style="margin-top:24px;">Sizes</div>
+      <div class="btn-row">
+        <a class="btn btn-primary btn-sm">Small</a>
+        <a class="btn btn-primary">Default</a>
+        <a class="btn btn-primary btn-lg">Large CTA</a>
+      </div>
+      <hr class="divider">
+      <div style="background:var(--navy);padding:20px;border-radius:var(--radius-md);margin-top:4px;">
+        <div class="card-label" style="color:rgba(255,255,255,0.4);">On Dark Backgrounds</div>
+        <div class="btn-row" style="margin-top:8px;">
+          <a class="btn" style="background:var(--green);color:white;">Request a Demo</a>
+          <a class="btn" style="background:transparent;color:white;border:2px solid rgba(255,255,255,0.4);">Get in Touch</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. COMPONENTS -->
+  <div class="section" id="components">
+    <div class="section-header">
+      <div class="section-num">05</div>
+      <div>
+        <div class="section-title">UI Components</div>
+        <div class="section-desc">Reusable patterns for consistent page-building across the site and platform</div>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-bottom:20px;">
+      <div class="card">
+        <div class="card-label">Badges & Status</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;">
+          <span class="badge badge-green badge-dot">AI-Powered</span>
+          <span class="badge badge-navy">Perth, WA</span>
+          <span class="badge badge-new">Beta</span>
+          <span class="badge" style="background:#FEE2E2;color:#DC2626;">Waitlist Only</span>
+          <span class="badge" style="background:#FFFBEB;color:#D97706;">Coming Soon</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-label">Form Input</div>
+        <div class="input-group">
+          <label class="input-label">Email address <span>*</span></label>
+          <input class="input" type="text" placeholder="you@company.com.au">
+          <span class="input-hint">We'll get back to you within 1 business day.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-3" style="margin-bottom:20px;">
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <div class="feature-title">Smart Candidate Matching</div>
+        <div class="feature-body">Our AI technology finds the right candidates for your role — locally first, then globally.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌏</div>
+        <div class="feature-title">Global Talent Access</div>
+        <div class="feature-body">Access millions of skilled professionals worldwide and filter by Australian qualifications.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📋</div>
+        <div class="feature-title">Contract Management</div>
+        <div class="feature-body">Low-cost payroll partners manage employment contracts for local compliance.</div>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-bottom:20px;">
+      <div>
+        <div class="card" style="margin-bottom:16px;">
+          <div class="card-label">Stat / Metric Cards</div>
+          <div class="grid-3">
+            <div class="stat-card">
+              <div class="stat-num">56%</div>
+              <div class="stat-label">Employers struggling to fill roles (2024)</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-num">8.1%</div>
+              <div class="stat-label">Employment growth in SMBs 2022–23</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-num">4.9★</div>
+              <div class="stat-label">Platform rating from 390 reviews</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-label">Step Indicator</div>
+        <div class="step-row">
+          <div class="step-num">1</div>
+          <div class="step-content"><h4>Sign Up & Get Onboarded</h4><p>Join as a Company, Agency, or Candidate and complete onboarding.</p></div>
+        </div>
+        <div class="step-row">
+          <div class="step-num">2</div>
+          <div class="step-content"><h4>Build Your Profile</h4><p>Create a business profile and connect your active job postings.</p></div>
+        </div>
+        <div class="step-row">
+          <div class="step-num">3</div>
+          <div class="step-content"><h4>Get Matching</h4><p>Our AI generates a shortlist of qualified candidates for your role.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Testimonial Card — Recommended Format</div>
+      <div class="grid-3">
+        <div class="testimonial">
+          <div class="testimonial-quote">"Go F!sh made global hiring feel straightforward. We found our first international energy hire within two weeks of going live."</div>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">SB</div>
+            <div><div class="testimonial-name">Sarah Beaumont</div><div class="testimonial-role">Head of People · Acceler8</div></div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <div class="testimonial-quote">"The visa matching tool alone saved our HR team dozens of hours. This is exactly what the energy sector needs."</div>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">MO</div>
+            <div><div class="testimonial-name">Marcus O'Brien</div><div class="testimonial-role">Operations Manager · Aussieos</div></div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <div class="testimonial-quote">"Being able to set our fee and have Go F!sh handle business development completely changed our agency model."</div>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">JL</div>
+            <div><div class="testimonial-name">Jade Liu</div><div class="testimonial-role">Director · Personr</div></div>
+          </div>
+        </div>
+      </div>
+      <p style="font-size:11px;color:var(--warning);margin-top:14px;padding:8px 12px;background:var(--warning-pale);border-radius:4px;">⚠ Current site uses placeholder Lorem Ipsum testimonials — all identical. Replace with real quotes as a priority. See Improvements section.</p>
+    </div>
+  </div>
+
+  <!-- 6. NAVIGATION -->
+  <div class="section" id="navigation">
+    <div class="section-header">
+      <div class="section-num">06</div>
+      <div>
+        <div class="section-title">Navigation</div>
+        <div class="section-desc">Sticky top nav — white on light, transparent-to-white on scroll</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-label">Desktop Nav — Light Surface</div>
+      <div class="nav-demo" style="margin-bottom:16px;">
+        <div class="nav-logo">Go F<em>!</em>sh</div>
+        <nav class="nav-links">
+          <a class="nav-link" href="#">Why Us</a>
+          <a class="nav-link" href="#">How It Works</a>
+          <a class="nav-link" href="#">Platform</a>
+          <a class="nav-link" href="#">Benefits</a>
+          <a class="nav-link" href="#">About</a>
+        </nav>
+        <div class="nav-ctas">
+          <a class="btn btn-ghost btn-sm">Contact</a>
+          <a class="btn btn-primary btn-sm">Request Demo</a>
+        </div>
+      </div>
+      <div class="nav-demo" style="background:var(--navy);border-color:rgba(255,255,255,0.1);">
+        <div class="nav-logo" style="color:white;">Go F<em>!</em>sh</div>
+        <nav class="nav-links">
+          <a class="nav-link" href="#" style="color:rgba(255,255,255,0.55);">Why Us</a>
+          <a class="nav-link" href="#" style="color:rgba(255,255,255,0.55);">How It Works</a>
+          <a class="nav-link" href="#" style="color:rgba(255,255,255,0.55);">Platform</a>
+          <a class="nav-link" href="#" style="color:rgba(255,255,255,0.55);">Benefits</a>
+          <a class="nav-link" href="#" style="color:rgba(255,255,255,0.55);">About</a>
+        </nav>
+        <div class="nav-ctas">
+          <a class="btn btn-sm" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.15);">Contact</a>
+          <a class="btn btn-secondary btn-sm">Request Demo</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. MOTION -->
+  <div class="section" id="motion">
+    <div class="section-header">
+      <div class="section-num">07</div>
+      <div>
+        <div class="section-title">Motion & Transitions</div>
+        <div class="section-desc">Purposeful animation — never decorative for its own sake</div>
+      </div>
+    </div>
+    <div class="card">
+      <table>
+        <thead>
+          <tr><th>Token</th><th>Duration</th><th>Easing</th><th>Use Case</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>transition-fast</td><td>150ms</td><td>ease</td><td>Hover color changes, button fills</td></tr>
+          <tr><td>transition-base</td><td>200ms</td><td>ease</td><td>Card lift, dropdown open, border highlight</td></tr>
+          <tr><td>transition-medium</td><td>300ms</td><td>ease-in-out</td><td>Modal/drawer open, tab content swap</td></tr>
+          <tr><td>transition-slow</td><td>500ms</td><td>cubic-bezier(0.16, 1, 0.3, 1)</td><td>Hero entrance, feature stagger reveal</td></tr>
+          <tr><td>transition-page</td><td>600ms</td><td>ease-in-out</td><td>Page transitions, section scroll reveals</td></tr>
+        </tbody>
+      </table>
+      <hr class="divider">
+      <p style="font-size:13px;color:var(--grey-mid);">Always respect <code style="font-size:12px;background:var(--grey-pale);padding:2px 6px;border-radius:4px;">prefers-reduced-motion</code>. Disable or reduce all animations when this media query is active.</p>
+    </div>
+  </div>
+
+  <!-- 8. ICONS -->
+  <div class="section" id="icons">
+    <div class="section-header">
+      <div class="section-num">08</div>
+      <div>
+        <div class="section-title">Icons & Imagery</div>
+        <div class="section-desc">Duotone SVG system — Navy + Green only. No outlined-only or filled-only mixing.</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-label">Icon Guidelines</div>
+      <div class="icon-row" style="margin-bottom:20px;">
+        <div class="icon-chip">✅ Duotone SVG (Navy + Green)</div>
+        <div class="icon-chip">✅ 24px default / 44px feature size</div>
+        <div class="icon-chip">✅ Phosphor Icons library</div>
+        <div class="icon-chip">❌ No emoji icons in UI</div>
+        <div class="icon-chip">❌ No mixing filled + outline styles</div>
+        <div class="icon-chip">❌ No >2 colour icons</div>
+      </div>
+      <div class="card-label">Photography Guidelines</div>
+      <div class="icon-row">
+        <div class="icon-chip">✅ Real people in professional settings</div>
+        <div class="icon-chip">✅ Energy/industrial/outdoor contexts</div>
+        <div class="icon-chip">✅ Diverse representation (global hiring theme)</div>
+        <div class="icon-chip">✅ Warm, high-contrast colour grading</div>
+        <div class="icon-chip">❌ Generic stock office photos</div>
+        <div class="icon-chip">❌ Clipart or illustrations as hero images</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9. AI PROMPT -->
+  <div class="section" id="ai-prompt">
+    <div class="section-header">
+      <div class="section-num">09</div>
+      <div>
+        <div class="section-title">AI Context Prompt</div>
+        <div class="section-desc">Copy this prompt at the start of any AI session to apply this style guide automatically</div>
+      </div>
+    </div>
+    <div class="prompt-box">
+      <span class="cm"># Go F!sh — AI Design Context</span><br><br>
+      <span class="kw">Brand:</span> <span class="val">Go F!sh</span> — AI-enabled recruitment platform for Australian energy & renewables sector<br>
+      <span class="kw">Tagline:</span> <span class="val">"Connect Globally, Hire Locally"</span><br>
+      <span class="kw">Audience:</span> <span class="val">HR managers, energy company operators, recruitment agencies, job seekers</span><br><br>
+      <span class="cm"># Fonts</span><br>
+      <span class="kw">Display/Headings:</span> <span class="val">Syne (weight 700–800)</span><br>
+      <span class="kw">Body/UI:</span> <span class="val">DM Sans (weight 400–600)</span><br><br>
+      <span class="cm"># Colors</span><br>
+      <span class="kw">primary:</span> <span class="val">#0D1B2A</span> <span class="cm">/* navy — authority, backgrounds */</span><br>
+      <span class="kw">accent:</span> <span class="val">#22A078</span> <span class="cm">/* green — CTAs, checkmarks, highlights */</span><br>
+      <span class="kw">accent-light:</span> <span class="val">#2DC48F</span> <span class="cm">/* green light — glows, badges */</span><br>
+      <span class="kw">neutral:</span> <span class="val">#718096</span> <span class="cm">/* supporting text */</span><br>
+      <span class="kw">bg:</span> <span class="val">#F7FAFC</span> <span class="cm">/* page background */</span><br><br>
+      <span class="cm"># Tone of voice</span><br>
+      <span class="kw">Voice:</span> <span class="val">Direct, practical, optimistic — not corporate jargon</span><br>
+      <span class="kw">CTAs:</span> <span class="val">Action-oriented — "Request Demo", "Get Started", "Join Waitlist"</span><br>
+      <span class="kw">Avoid:</span> <span class="val">Passive voice, buzzword overload, generic SaaS phrases like "seamlessly"</span><br><br>
+      <span class="cm"># UI Patterns</span><br>
+      <span class="kw">Buttons:</span> <span class="val">Navy (primary authority) / Green (conversion action) — border-radius 8px</span><br>
+      <span class="kw">Cards:</span> <span class="val">White, 1px #E2E8F0 border, 20px radius, subtle shadow</span><br>
+      <span class="kw">Icons:</span> <span class="val">Duotone SVG, navy + green only, Phosphor Icons library</span><br>
+      <span class="kw">Sections:</span> <span class="val">Alternate white / #F7FAFC / navy backgrounds for rhythm</span><br>
+      <span class="kw">Spacing:</span> <span class="val">4px base unit — use 8/16/24/32/48/64px multiples only</span><br>
+    </div>
+  </div>
+
+  <!-- 10. IMPROVEMENTS -->
+  <div class="section" id="improvements">
+    <div class="section-header">
+      <div class="section-num">10</div>
+      <div>
+        <div class="section-title">UI Improvement Recommendations</div>
+        <div class="section-desc">Issues identified from the live site — prioritised by impact</div>
+      </div>
+    </div>
+    <div class="improvements-list">
+
+      <div class="improvement critical">
+        <div class="imp-icon">🚨</div>
+        <div>
+          <div class="imp-tag critical">Critical — Content</div>
+          <div class="imp-title">Placeholder testimonials left live</div>
+          <div class="imp-desc">Every testimonial on the site uses "veritatis quasi architecto…" Lorem Ipsum placeholder text with the same dummy name "Charlotte Johnson, Head of eCommerce" repeated 10 times. This directly destroys trust with potential customers and looks like an unfinished template.</div>
+          <div class="imp-fix"><strong>Fix</strong>Collect 3–5 real testimonials from beta users. Format: 1–2 sentences on a specific outcome, full name, real job title, and company. Add verified logos.</div>
+        </div>
+      </div>
+
+      <div class="improvement critical">
+        <div class="imp-icon">🚨</div>
+        <div>
+          <div class="imp-tag critical">Critical — Content</div>
+          <div class="imp-title">Leftover template section: "Prisla solutions"</div>
+          <div class="imp-desc">The section titled "Elevate your business with our Prisla solutions" contains placeholder copy from the Webflow template it was built on. "Prisla" is not a Go F!sh product and the copy ("innovative idea Many start-ups…") is generic filler.</div>
+          <div class="imp-fix"><strong>Fix</strong>Remove or replace this section entirely. It could become a platform walkthrough, a case study block, or a demo video section.</div>
+        </div>
+      </div>
+
+      <div class="improvement warning">
+        <div class="imp-icon">⚠️</div>
+        <div>
+          <div class="imp-tag warning">High — UX</div>
+          <div class="imp-title">No clear pricing or commitment signal</div>
+          <div class="imp-desc">Visitors can't gauge cost or commitment level. "Request Demo" as the sole conversion path creates friction for users who want to self-serve. Many B2B SaaS companies lose conversions by only offering demo gates on beta platforms.</div>
+          <div class="imp-fix"><strong>Fix</strong>Add a lightweight "How pricing works" section or FAQ item. Even "Free to join the waitlist — pricing announced at launch" reduces anxiety and improves conversion.</div>
+        </div>
+      </div>
+
+      <div class="improvement warning">
+        <div class="imp-icon">⚠️</div>
+        <div>
+          <div class="imp-tag warning">High — Trust</div>
+          <div class="imp-title">Partner logos are low-contrast and undersized</div>
+          <div class="imp-desc">The "Working with industry leading partners" section shows Acceler8, Personr, and Aussieos logos but they are small and presented without any description. Visitors don't know what these relationships mean.</div>
+          <div class="imp-fix"><strong>Fix</strong>Increase logo sizes to minimum 120px width. Add a single-line caption per partner: e.g. "Acceler8 — Growth & Acceleration Partner". Use a light grey tinted background strip to ground the section.</div>
+        </div>
+      </div>
+
+      <div class="improvement warning">
+        <div class="imp-icon">⚠️</div>
+        <div>
+          <div class="imp-tag warning">High — Visual Hierarchy</div>
+          <div class="imp-title">Inconsistent heading hierarchy in Platform section</div>
+          <div class="imp-desc">The "Visa Matching" feature card uses an H2 (##) while all other feature cards use H3 (###). This creates an unintentional visual weight difference and breaks the scanning rhythm of the section.</div>
+          <div class="imp-fix"><strong>Fix</strong>Normalise all feature cards in the Platform section to H3 / the same visual weight. Apply consistent icon size (44px) and title font-size (18px) across all platform tiles.</div>
+        </div>
+      </div>
+
+      <div class="improvement enhance">
+        <div class="imp-icon">✨</div>
+        <div>
+          <div class="imp-tag enhance">Enhancement — Modern UI</div>
+          <div class="imp-title">Add scroll-triggered section reveals</div>
+          <div class="imp-desc">Currently the page renders statically. Modern SaaS sites use subtle entrance animations — cards fading up, stats counting in — to guide attention and signal polish. This is especially important for the "Why Now" stats section where the numbers are the key value proposition.</div>
+          <div class="imp-fix"><strong>Fix</strong>Add IntersectionObserver-based reveal: opacity 0 → 1, translateY 16px → 0, 400ms ease. Stagger feature cards by 80ms. Animate stat numbers counting up on scroll entry.</div>
+        </div>
+      </div>
+
+      <div class="improvement enhance">
+        <div class="imp-icon">✨</div>
+        <div>
+          <div class="imp-tag enhance">Enhancement — Navigation</div>
+          <div class="imp-title">Sticky nav should shift to light background on scroll</div>
+          <div class="imp-desc">The hero section has a dark background but the nav sits over a light section as you scroll. A transparent-to-white transition on scroll would look significantly more polished and improve readability throughout.</div>
+          <div class="imp-fix"><strong>Fix</strong>Use a scroll event listener to toggle a .scrolled class on the nav. On .scrolled: background white, add box-shadow, switch text to navy. Transition: background 200ms ease.</div>
+        </div>
+      </div>
+
+      <div class="improvement enhance">
+        <div class="imp-icon">✨</div>
+        <div>
+          <div class="imp-tag enhance">Enhancement — Mobile</div>
+          <div class="imp-title">Hamburger menu lacks visible indicator of state</div>
+          <div class="imp-desc">On mobile, the menu toggle has no animated open/close state indicator, making it harder for users to know if the menu is open or closed. Standard expectation is a smooth X ↔ ☰ transition.</div>
+          <div class="imp-fix"><strong>Fix</strong>Animate the hamburger icon: three lines morph to an X using CSS transform (rotate + opacity). Add a backdrop/overlay behind the mobile nav drawer.</div>
+        </div>
+      </div>
+
+      <div class="improvement enhance">
+        <div class="imp-icon">✨</div>
+        <div>
+          <div class="imp-tag enhance">Enhancement — Content</div>
+          <div class="imp-title">CTA copy is too generic across multiple sections</div>
+          <div class="imp-desc">Multiple sections use "Find out more" and "Get started now" with no specificity. These could be contextualised to the section to improve conversion — e.g. in the Visa Matching section, "Explore Visa Matching" is far more compelling than a generic CTA.</div>
+          <div class="imp-fix"><strong>Fix</strong>Audit every CTA button. Replace generic labels with action-specific alternatives: "See How Visa Matching Works", "Browse the Platform", "Talk to a Recruitment Specialist".</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<div class="guide-footer">
+  <strong>Go F!sh — UI Style Guide</strong> &nbsp;·&nbsp; Generated April 2026 &nbsp;·&nbsp; For AI-assisted design and development use
+</div>
+
+</body>
+</html>
