@@ -1,24 +1,36 @@
+import AnnouncementBar from './components/AnnouncementBar';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import About from './components/About';
-import Services from './components/Services';
+import Partners from './components/Partners';
+import WhyNow from './components/WhyNow';
+import WhyUs from './components/WhyUs';
 import HowItWorks from './components/HowItWorks';
-import Audience from './components/Audience';
-import Stats from './components/Stats';
+import Platform from './components/Platform';
+import CtaBanner from './components/CtaBanner';
+import Benefits from './components/Benefits';
+import Testimonials from './components/Testimonials';
+import About from './components/About';
+import Faq from './components/Faq';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
 export default function App() {
   return (
     <>
+      <AnnouncementBar />
       <Navbar />
       <main>
         <Hero />
-        <About />
-        <Services />
+        <Partners />
+        <WhyNow />
+        <WhyUs />
         <HowItWorks />
-        <Audience />
-        <Stats />
+        <Platform />
+        <CtaBanner />
+        <Benefits />
+        <Testimonials />
+        <About />
+        <Faq />
         <Contact />
       </main>
       <Footer />

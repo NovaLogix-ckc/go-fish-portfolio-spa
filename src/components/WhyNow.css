@@ -1,0 +1,142 @@
+.whynow {
+  position: relative;
+  overflow: hidden;
+}
+
+.whynow__bg {
+  position: absolute;
+  inset: 0;
+}
+
+.whynow__bg-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #0D1B2A 0%, #162436 50%, #0D1B2A 100%);
+}
+
+.whynow__bg-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  animation: drift 18s ease-in-out infinite;
+}
+
+.whynow__bg-orb--1 {
+  width: 300px;
+  height: 300px;
+  top: -50px;
+  right: 10%;
+  background: rgba(34,160,120,0.15);
+}
+
+.whynow__bg-orb--2 {
+  width: 250px;
+  height: 250px;
+  bottom: -80px;
+  left: 15%;
+  background: rgba(45,196,143,0.1);
+  animation-delay: -8s;
+}
+
+.whynow__bg-particle {
+  position: absolute;
+  bottom: 0;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: rgba(45,196,143,0.4);
+  animation: rise linear infinite;
+}
+
+.whynow__header {
+  text-align: center;
+  margin-bottom: var(--space-12);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.whynow__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-6);
+}
+
+.whynow__card {
+  background: var(--navy-mid);
+  border-radius: var(--radius-md);
+  padding: 22px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.2s;
+}
+
+.whynow__card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.whynow__card-glow {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: rgba(45,196,143,0.12);
+}
+
+.whynow__card-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(45,196,143,0.15);
+  color: var(--green-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-4);
+  position: relative;
+  z-index: 1;
+}
+
+.whynow__stat {
+  font-family: var(--font-display);
+  font-size: 34px;
+  font-weight: 800;
+  color: var(--green-light);
+  line-height: 1;
+  margin-bottom: 4px;
+  position: relative;
+  z-index: 1;
+}
+
+.whynow__card-title {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: var(--space-2);
+  position: relative;
+  z-index: 1;
+}
+
+.whynow__card-body {
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.65;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 900px) {
+  .whynow__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .whynow__grid {
+    grid-template-columns: 1fr;
+  }
+}

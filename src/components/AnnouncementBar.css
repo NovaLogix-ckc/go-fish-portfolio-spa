@@ -1,0 +1,54 @@
+.announcement {
+  background: var(--navy);
+  color: rgba(255,255,255,0.75);
+  font-size: 13px;
+  padding: 10px 0;
+  position: relative;
+  z-index: 1001;
+}
+
+.announcement__inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+}
+
+.announcement__text {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.announcement__badge {
+  background: linear-gradient(135deg, var(--green-light), var(--green));
+  color: var(--white);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.04em;
+}
+
+.announcement__link {
+  color: var(--green-light);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.announcement__link:hover {
+  color: var(--white);
+}
+
+.announcement__close {
+  color: rgba(255,255,255,0.4);
+  padding: 4px;
+  flex-shrink: 0;
+  transition: color 0.15s;
+}
+
+.announcement__close:hover {
+  color: var(--white);
+}

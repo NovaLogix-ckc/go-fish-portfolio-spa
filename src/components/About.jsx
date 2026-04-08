@@ -1,24 +1,5 @@
 import { useRef, useEffect } from 'react';
-import { Target, Users, Lightbulb } from 'lucide-react';
 import './About.css';
-
-const pillars = [
-  {
-    icon: Target,
-    title: 'Our Mission',
-    text: 'Simplify global recruitment, making it seamless for Australian businesses to connect with highly qualified talent and power the energy transition.',
-  },
-  {
-    icon: Users,
-    title: 'Our Approach',
-    text: 'Blending cutting-edge technology with deep industry expertise to evolve how businesses find, vet, and onboard talent — domestically and globally.',
-  },
-  {
-    icon: Lightbulb,
-    title: 'Our Vision',
-    text: 'A future where skill shortages never slow progress. Where the right talent finds the right opportunity, regardless of borders.',
-  },
-];
 
 export default function About() {
   const sectionRef = useRef(null);
@@ -27,14 +8,11 @@ export default function About() {
     const observer = new IntersectionObserver(
       entries => {
         entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
+          if (entry.isIntersecting) entry.target.classList.add('visible');
         });
       },
-      { threshold: 0.15 }
+      { threshold: 0.1 }
     );
-
     const els = sectionRef.current?.querySelectorAll('.reveal');
     els?.forEach(el => observer.observe(el));
     return () => els?.forEach(el => observer.unobserve(el));
@@ -42,37 +20,26 @@ export default function About() {
 
   return (
     <section id="about" className="about section" ref={sectionRef}>
-      {/* Background decoration */}
       <div className="about__bg-shape" />
-
       <div className="container">
-        <div className="about__header reveal">
+        <div className="about__inner reveal">
           <span className="section-label">About Go F!sh</span>
-          <h2 className="section-title">
-            Bridging the Gap Between<br />
-            Talent & Opportunity
-          </h2>
-          <p className="section-subtitle">
-            Australia's energy sector faces a critical skill shortage.
-            We're here to change that — connecting millions of qualified
-            professionals worldwide with businesses driving the renewable revolution.
-          </p>
-        </div>
+          <h2 className="section-title">The Talent Solution for Australia's Energy Future</h2>
 
-        <div className="about__pillars">
-          {pillars.map((pillar, i) => (
-            <div
-              key={pillar.title}
-              className="about__pillar reveal"
-              style={{ transitionDelay: `${i * 120}ms` }}
-            >
-              <div className="about__pillar-icon">
-                <pillar.icon size={24} />
-              </div>
-              <h3 className="about__pillar-title">{pillar.title}</h3>
-              <p className="about__pillar-text">{pillar.text}</p>
-            </div>
-          ))}
+          <div className="about__body">
+            <p>
+              The future of Australia's workforce depends on bridging the gap between Australian employers and suitably qualified candidates, especially in the energy transition and renewable energy sectors where Australia is facing a skill shortage. Inflation in the cost of labor is increasing, upsetting the feasibility of much-needed change amidst record low unemployment and growing demand for energy security and transition. At Go F!sh, we recognize the pressing need for skilled professionals and the challenges local businesses can face in finding the right talent domestically. We believe technology can help.
+            </p>
+            <p>
+              Our mission is to simplify the hiring process, making it seamless for companies to connect with highly qualified talent. Our platform ensures that businesses can thrive by discovering, attracting, and recruiting the best professionals wherever they reside.
+            </p>
+            <p>
+              Go F!sh leverages cutting-edge technology to match skilled individuals to job opportunities, encouraging collaboration and engagement at a domestic and global scale. Our customer-centric approach brings candidates and employers closer together, and our collaborative approach ensures businesses and candidates are supported at every step of the way, from initial matching to job offer.
+            </p>
+            <p>
+              Our commitment to enhancing talent pools and our unwavering commitment to using technology for good helps companies expand talent pools, save time, reduce costs, and focus on what they do best—driving innovation and growth in the energy sector. <strong>Join us in building a brighter future with a diverse and talented workforce.</strong>
+            </p>
+          </div>
         </div>
       </div>
     </section>

@@ -1,31 +1,31 @@
 import { useRef, useEffect } from 'react';
-import { UserPlus, Link2, Sparkles, Handshake } from 'lucide-react';
+import { UserPlus, Briefcase, Sparkles, Handshake } from 'lucide-react';
 import './HowItWorks.css';
 
 const steps = [
   {
-    num: '01',
+    num: '1',
     icon: UserPlus,
+    title: 'Sign Up & Get Onboarded',
+    desc: 'Get a sneak peek at how data-enriched recruitment can support your strategy. While our product is in development, join our waitlist as a Company or Partner, complete the onboarding process & express your interest.',
+  },
+  {
+    num: '2',
+    icon: Briefcase,
     title: 'Build Your Profile',
-    desc: 'Create your company or candidate profile and connect your job postings or preferences to our platform.',
+    desc: "Get started! Create a business profile and connect with our team today. Agency Partners? If you're interested in participating in a platform with agency-vetted/pre-qualified roles, we'd like to speak with you.",
   },
   {
-    num: '02',
+    num: '3',
     icon: Sparkles,
-    title: 'Smart Matching',
-    desc: 'Our AI strategically markets your roles to the ideal audience and matches candidates based on skills, qualifications, and fit.',
+    title: 'Get Matching',
+    desc: "We've been successfully testing and implementing data-enriched recruitment strategies with local employers to find the right profiles. Once on platform, we'll reach out to get started.",
   },
   {
-    num: '03',
-    icon: Link2,
-    title: 'Vet & Engage',
-    desc: 'Candidates undergo thorough screening. Flag interest, conduct interviews, and shortlist the best talent — all within the platform.',
-  },
-  {
-    num: '04',
+    num: '4',
     icon: Handshake,
-    title: 'Hire & Onboard',
-    desc: 'Extend offers, manage visas, contracts, and settlement support. We handle the complexities end to end.',
+    title: 'Hire & Integration',
+    desc: "While our platform is in development, we are still here to support. Engage with our services to source the right candidates and Agency partners. Once you've built your profile and connected us to your job posting, we'll handle the rest.",
   },
 ];
 
@@ -50,11 +50,10 @@ export default function HowItWorks() {
     <section id="how-it-works" className="hiw section" ref={sectionRef}>
       <div className="container">
         <div className="hiw__header reveal">
-          <span className="section-label">The Process</span>
-          <h2 className="section-title">How It Works</h2>
+          <span className="section-label">How It Works</span>
+          <h2 className="section-title">From match to hiring – play your best hand</h2>
           <p className="section-subtitle">
-            From profile to placement in four straightforward steps.
-            We've stripped away the complexity of international recruitment.
+            Go F!sh connects to your existing job postings. If your postings aren't generating results, you can engage with our platform and set your terms. Once engaged, our AI technology will generate a list of suitable candidates and invite agency partners to join the search, ensuring no duplication and tracking applications to avoid over-representation. You select the candidates you want to pursue, and Go F!sh or our agency partners will proactively engage these prospects to generate interest.
           </p>
         </div>
 

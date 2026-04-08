@@ -3,12 +3,11 @@ import { Menu, X } from 'lucide-react';
 import './Navbar.css';
 
 const navLinks = [
-  { label: 'About', href: '#about' },
-  { label: 'Services', href: '#services' },
+  { label: 'Why Us', href: '#why-us' },
   { label: 'How It Works', href: '#how-it-works' },
-  { label: 'Employers', href: '#employers' },
-  { label: 'Candidates', href: '#candidates' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Platform', href: '#platform' },
+  { label: 'Benefits', href: '#benefits' },
+  { label: 'About', href: '#about' },
 ];
 
 export default function Navbar() {
@@ -22,11 +21,7 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    if (menuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
   }, [menuOpen]);
 
@@ -36,8 +31,7 @@ export default function Navbar() {
     <nav className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
       <div className="navbar__inner container">
         <a href="#" className="navbar__logo">
-          <span className="navbar__logo-go">Go</span>
-          <span className="navbar__logo-fish">F!sh</span>
+          Go F<span className="navbar__logo-accent">!</span>sh
         </a>
 
         <ul className="navbar__links">
@@ -48,7 +42,10 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <a href="#contact" className="btn btn-accent navbar__cta">Get Started</a>
+        <div className="navbar__ctas">
+          <a href="#contact" className="btn btn-ghost btn-sm">Contact</a>
+          <a href="#contact" className="btn btn-primary btn-sm">Request Demo</a>
+        </div>
 
         <button
           className="navbar__toggle"
@@ -59,7 +56,6 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Menu */}
       <div className={`navbar__mobile ${menuOpen ? 'navbar__mobile--open' : ''}`}>
         <ul className="navbar__mobile-links">
           {navLinks.map((link, i) => (
@@ -71,7 +67,7 @@ export default function Navbar() {
           ))}
         </ul>
         <a href="#contact" className="btn btn-accent btn-lg navbar__mobile-cta" onClick={handleLinkClick}>
-          Get Started
+          Request Demo
         </a>
       </div>
     </nav>

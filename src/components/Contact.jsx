@@ -1,5 +1,5 @@
 import { useRef, useEffect, useState } from 'react';
-import { Send, Mail, MapPin, Phone, ArrowRight } from 'lucide-react';
+import { Send, Mail, MapPin, Phone } from 'lucide-react';
 import './Contact.css';
 
 export default function Contact() {
@@ -31,12 +31,10 @@ export default function Contact() {
       <div className="container">
         <div className="contact__layout">
           <div className="contact__info reveal">
-            <span className="section-label">Get in Touch</span>
-            <h2 className="section-title">Ready to Transform<br />Your Hiring?</h2>
+            <span className="section-label">Join the Waitlist</span>
+            <h2 className="section-title">We're slowly onboarding new customers – get on the list</h2>
             <p className="contact__text">
-              Whether you're an employer seeking skilled talent or a
-              professional looking for your next opportunity in Australia's
-              energy sector — we'd love to hear from you.
+              Engage with our platform today. We're bridging the gap between qualified talent and Australian businesses facing a skill shortage.
             </p>
 
             <div className="contact__details">
@@ -54,8 +52,8 @@ export default function Contact() {
                   <MapPin size={18} />
                 </div>
                 <div>
-                  <span className="contact__detail-label">Location</span>
-                  <span className="contact__detail-value">Sydney, Australia</span>
+                  <span className="contact__detail-label">Office</span>
+                  <span className="contact__detail-value">L32, 152 St Georges Terrace, Perth, WA 6000</span>
                 </div>
               </div>
               <div className="contact__detail">
@@ -64,7 +62,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <span className="contact__detail-label">Phone</span>
-                  <span className="contact__detail-value">+61 2 8000 0000</span>
+                  <span className="contact__detail-value">+61 416 355 859</span>
                 </div>
               </div>
             </div>
@@ -73,23 +71,22 @@ export default function Contact() {
           <form className="contact__form reveal" onSubmit={handleSubmit} style={{ transitionDelay: '150ms' }}>
             <div className="contact__form-row">
               <div className="contact__field">
-                <label className="contact__label" htmlFor="name">Full Name</label>
+                <label className="contact__label" htmlFor="name">Full Name <span className="contact__req">*</span></label>
                 <input className="contact__input" id="name" type="text" placeholder="Your name" required />
               </div>
               <div className="contact__field">
-                <label className="contact__label" htmlFor="email">Email</label>
-                <input className="contact__input" id="email" type="email" placeholder="you@company.com" required />
+                <label className="contact__label" htmlFor="email">Email <span className="contact__req">*</span></label>
+                <input className="contact__input" id="email" type="email" placeholder="you@company.com.au" required />
               </div>
             </div>
 
             <div className="contact__field">
-              <label className="contact__label" htmlFor="type">I am a...</label>
+              <label className="contact__label" htmlFor="type">I am... <span className="contact__req">*</span></label>
               <select className="contact__input contact__select" id="type" required>
                 <option value="">Select one</option>
-                <option value="employer">Employer seeking talent</option>
-                <option value="candidate">Candidate seeking opportunities</option>
-                <option value="partner">Potential partner</option>
-                <option value="other">Other enquiry</option>
+                <option value="worker">I am looking for work</option>
+                <option value="agency">I am an agency looking to place talent</option>
+                <option value="company">I am a company looking to hire talent</option>
               </select>
             </div>
 
@@ -100,7 +97,6 @@ export default function Contact() {
                 id="message"
                 rows={5}
                 placeholder="Tell us about your needs..."
-                required
               />
             </div>
 
